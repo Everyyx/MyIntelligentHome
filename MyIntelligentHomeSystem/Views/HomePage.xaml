@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="MyIntelligentHomeSystem.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyIntelligentHomeSystem.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded"
+    NavigationCacheMode="Enabled">
+
+    <Grid x:Name="HomePageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Text="{Binding Now}" Foreground="White" FontSize="100"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <TextBlock Text="{Binding Date}" Foreground="White" FontSize="40"/>
+            <TextBlock Text="," Foreground="White" FontSize="40"/>
+            <TextBlock Text="{Binding Week}" Foreground="White" FontSize="40"/>
+        </StackPanel>
+    </Grid>
+</Page>

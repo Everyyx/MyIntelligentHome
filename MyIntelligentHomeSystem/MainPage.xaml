@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="MyIntelligentHomeSystem.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyIntelligentHomeSystem"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <NavigationView x:Name="MainPgaeNavigationView"
+                        ItemInvoked="MainPgaeNavigationView_ItemInvoked"
+                        OpenPaneLength="100"
+                        Language="zh-cn"
+                        IsSettingsVisible="True"
+                        AlwaysShowHeader="False">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="HomeNavItem" Content="主页" Tag="Home">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE80F;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="WeatherItem" Content="天气" Tag="Weather">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEC8A;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="RoomNavItem" Content="房间" Tag="Room">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE179;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="FaceNavItem" Content="来访" Tag="FaceDetect">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8B8;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="MainPageRootFrame" />
+        </NavigationView>
+        <MediaElement x:Name="myMediaElement"/>
+    </Grid>
+</Page>

@@ -1,0 +1,132 @@
+﻿<Page
+    x:Class="MyIntelligentHomeSystem.Views.WeatherPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyIntelligentHomeSystem.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:MyIntelligentHomeSystem.Models"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+        </Style>
+        <Style TargetType="FontIcon">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Page.Resources>
+    <!--  界面方案一  -->
+    <Grid x:Name="WeatherPageGrid"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ProgressRing  x:Name="WeatherpagePrograssRing" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="40"/>
+        <ParallaxView Grid.ColumnSpan="2" VerticalShift="150" >
+            <Image x:Name="BackgroundImage" Source="Assets/BingWallPaper/BingWallpaper1.jpg"
+               Stretch="UniformToFill"/>
+        </ParallaxView>
+        <!-- 左Grid-->
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="22"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="city" Text="{x:Bind todayWeather.CityName,Mode=OneWay}" FontSize="28" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="40"/>
+            <Image x:Name="icon"  Grid.Row="2" Grid.Column="0"  />
+            <Grid Grid.Row="2" Grid.Column="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <TextBlock x:Name="temp" Text="{x:Bind todayWeather.Temp,Mode=OneWay}" FontSize="90" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <FontIcon  x:Name="TempHighFontIcon" Glyph = "&#xE11C;" Grid.Row="2" Grid.Column="0"/>
+                <FontIcon x:Name="TempLowFontIcon" Glyph = "&#xE118;" Grid.Row="3" Grid.Column="0"/>
+                <TextBlock Text="{x:Bind todayWeather.TempHigh,Mode=OneWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{x:Bind todayWeather.TempLow,Mode=OneWay}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom"/>
+            </Grid>
+            <TextBlock x:Name="weather" Text="{x:Bind todayWeather.WeatherDescription,Mode=OneWay}" Height="30" FontSize="22"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="updatetime" FontSize="10" Text="{x:Bind todayWeather.LastUpdateTime,Mode=OneWay}" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+            <Grid Grid.Row="5" Grid.Column="0">
+                <TextBlock x:Name="AqiTblock" Text="空气质量指数:"  Grid.Column="0" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Row="5" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3*"/>
+
+                </Grid.ColumnDefinitions>
+                <Border  Grid.Column="0" Height="20" VerticalAlignment="Top" >
+                    <TextBlock Width="25" HorizontalAlignment="Left" Text="{x:Bind todayWeather.AirQualityIndex,Mode=OneWay}"/>
+                </Border>
+                <TextBlock Text="{x:Bind todayWeather.AqiLevel,Mode=OneWay}"  Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+            </Grid>
+            
+            <TextBlock Text="{x:Bind todayWeather.Humidity,Mode=OneWay}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center"/>
+        </Grid>
+        <!--右Grid-->
+        <Grid Grid.Column="1">
+            <ListView x:Name="DaliyWeatherListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:DaliyWeather">
+                        <!--<StackPanel>
+                            <TextBlock Text="{x:Bind Date}"/>
+                            <Image Source="{x:Bind Img}" Width="50" Height="50"/>
+                            <TextBlock Text="{x:Bind TempHigh}"/>
+                            <TextBlock Text="{x:Bind TempLow}"/>
+                        </StackPanel>-->
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Line Stroke="Gray" StrokeThickness="1" X2="100" />
+                                <TextBlock Text="{x:Bind Date}"/>
+                                <Image Source="{x:Bind Img}" Width="50" Height="50"/>
+                            </StackPanel>
+                            <Grid Width="30">
+                                
+                            </Grid>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{x:Bind TempHigh}" FontSize="14"/>
+                                <TextBlock Text="{x:Bind TempLow}" FontSize="14"/>
+                                <TextBlock Text="{x:Bind Weatherdescription}" FontSize="20"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
