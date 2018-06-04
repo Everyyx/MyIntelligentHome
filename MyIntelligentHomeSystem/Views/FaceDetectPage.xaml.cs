@@ -38,7 +38,7 @@ namespace MyIntelligentHomeSystem.Views
     /// </summary>
     public sealed partial class FaceDetectPage : Page
     {
-        const string subscriptionKey = "58517156548544b18120161caebff53f";
+        const string subscriptionKey = "**********************************";
         const string uriFace = "https://api.cognitive.azure.cn/face/v1.0/";
         const string groupId = "group1";
         private const double confidenceThreshold = 0.5;
