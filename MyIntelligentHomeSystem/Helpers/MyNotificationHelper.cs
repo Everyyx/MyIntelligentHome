@@ -14,8 +14,8 @@ namespace MyIntelligentHomeSystem.Helpers
         {
             NotificationHubClient hub = NotificationHubClient
                 .CreateClientFromConnectionString(
-                    "Endpoint=sb://myazurenotificationhub.servicebus.chinacloudapi.cn/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=RCMPTgccfIQagUo+xEjLGQLldY6X55oRlb7qyXdVcqg="
-                    , "MyIntelligentHome");
+                    "<connect string>"
+                    , "<Hub  name>");
             if (visitordata != "陌生人")
             {
                 var toastContent = new ToastContent()
