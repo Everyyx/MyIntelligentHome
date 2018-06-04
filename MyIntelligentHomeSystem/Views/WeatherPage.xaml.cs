@@ -27,7 +27,7 @@ namespace MyIntelligentHomeSystem.Views
     /// </summary>
     public sealed partial class WeatherPage : Page
     {
-        private const string APIkey = "df911386d72aa81c";
+        private const string APIkey = "**************";
 
         
         private static Geoposition geoposition;
